@@ -8,6 +8,10 @@ namespace DiveIntoDesignPatterns.Patterns.Prototype
 {
     public class Animal : IAnimalPrototype
     {
+        public Animal(Animal animal) {
+            Name = animal.Name; 
+            Age = animal.Age;   
+        }
         public Animal(string name, int age) {
             this.Name = name;
             this.Age = age;
@@ -16,7 +20,7 @@ namespace DiveIntoDesignPatterns.Patterns.Prototype
         public int Age {  get; set; }
         public Animal Clone()
         {
-            return this;
+            return new Animal(this);
         }
     }
 }

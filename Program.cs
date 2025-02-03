@@ -1,5 +1,6 @@
 ﻿using DiveIntoDesignPatterns.Patterns.Builder;
 using DiveIntoDesignPatterns.Patterns.Prototype;
+using DiveIntoDesignPatterns.Patterns.Singleton;
 using System.IO;
 
 class Program
@@ -9,6 +10,8 @@ class Program
         // The client code creates a builder object, passes it to the
         // director and then initiates the construction process. The end
         // result is retrieved from the builder object.
+        Console.WriteLine("-----Builder------");
+
         var director = new HouseDirector();
         var builder = new HouseWithWalls();
         director.HouseBuilder = builder;
@@ -29,8 +32,15 @@ class Program
         Console.Write(builder.GetHouse().ListParts());
 
         //Prototype
+        Console.WriteLine("-----Prototype------");
+
         var gato = new Animal("Daisy", 4);
         var gatoCopy = gato.Clone();
-        Console.WriteLine("Copia de gato : " + gatoCopy.ToString());
+        Console.WriteLine("Cat copy : " + gatoCopy.Name);
+
+        //Singleton
+        Console.WriteLine("-----Singleton------");
+        var dbConnection = DatabaseConnection.GetInstance(); //Can't create a new Object
+        Console.WriteLine("ConnectionString : " + dbConnection.ConnectionString);
     }
 }
